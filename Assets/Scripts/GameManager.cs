@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
     private int score;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        Screen.SetResolution(1920, 1080, true);
         score = 0;
     }
 
