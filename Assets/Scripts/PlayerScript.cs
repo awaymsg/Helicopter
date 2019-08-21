@@ -87,6 +87,10 @@ public class PlayerScript : MonoBehaviour
 
         rb.AddForce(tilt);
 
+        transform.position = new Vector3(transform.position.x, -0.4f, transform.position.z);
+
+        //rb.velocity = new Vector3(Mathf.Clamp(rb.velocity.x, -5f, 5f), 0, Mathf.Clamp(rb.velocity.z, -5f, 5f));
+
         transform.eulerAngles = new Vector3(20 + rb.velocity.z * 12f, 0, rb.velocity.x * -6f);
 
         if (fi <= 0)

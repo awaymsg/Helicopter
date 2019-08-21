@@ -5,14 +5,22 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     [SerializeField] private GameObject target;
-    [SerializeField] private float t;
+    [SerializeField] private int size;
+    private float t;
     private Vector3 targetPos;
+    private Fir xFir;
+
+    private void Awake()
+    {
+        xFir = new Fir(size);
+    }
 
     // Update is called once per frame
     void Update()
     {
-        targetPos = new Vector3(target.transform.position.x, transform.position.y, transform.position.z);
-        t = Mathf.Abs(target.transform.position.x - transform.position.x) * 0.01f;
+        xFir.writeSample(target.transform.position.x / 5f);
+        targetPos = new Vector3(xFir.getOutput(), transform.position.y, transform.position.z);
+        t = Mathf.Abs(xFir.getOutput() - transform.position.x) * 0.015f;
         transform.position = Vector3.Lerp(transform.position, targetPos, t);
     }
 }
